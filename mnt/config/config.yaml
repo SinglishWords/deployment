@@ -1,0 +1,21 @@
+app:
+  addr: :8080
+  mode: release
+  baseurl: /
+mysql: #just template, will change when
+  host: mysql:3306
+  user: csqsiew
+  dbname: singlishwords
+  password: u98x7v89asx
+  options:
+    - parseTime=True
+redis:
+  host: redis:6379
+  password:
+  db: 0
+swagger:
+  enable: true
+  path: /_/swagger/*any
+log: # default output is `stdout`, or can use a file name
+  route: /var/log/singlishwords/route.log
+  info: /var/log/singlishwords/info.log
