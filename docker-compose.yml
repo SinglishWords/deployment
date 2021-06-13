@@ -1,0 +1,64 @@
+version: '3'
+
+# There are several options about the user data
+# 
+# 1. 
+#   create a new folder under /opt/ or /usr/local/
+#
+#   configurations  ->  singlishwords/etc/config.yaml
+#   exeutable       ->  singlishwords/bin/
+#   database        ->  singlishwords/data/
+#   frontend        ->  singlishwords/nginx/
+# 
+# 2.
+#   follow Filesystem Hierarchy Standard suggest (ref: https://linux.die.net/man/7/hier)
+# 
+#   config web      ->  /usr/local/etc/singlishwords/web
+#   database        ->  /var/local/singlishwords/mysql
+#   frontend        ->  /var/local/singlishwords/www
+#
+#   app log         ->  /var/local/singlishwords/log/web
+#   
+#   nginx log       ->  /var/local/singlishwords/log/nginx
+#   config nginx    ->  /usr/local/etc/singlishwords/nginx/conf.d
+#   ssl cert        ->  /etc/letsencrypt
+# 
+
+# ports:
+# - "8080:8080" # outer:inner
+services:
+    singlishwords_app:
+        build: ./singlishwords/
+        image: singlishwords_app
+        volumes:
+            - ./mnt/log/singlishwords:/var/log/singlishwords
+            # - /var/log/singlishwords/:/var/log/singlishwords
+        depends_on:
+            - redis
+            - nginx
+            - mysql
+    redis:
+        image: "redis:alpine"
+    mysql:
+        build: ./mysql/
+        image: singlishwords_mysql
+        volumes:
+            - ./mnt/mysql:/var/lib/mysql
+            # - /var/local/singlishwords/mysql:/var/lib/mysql
+        environment: 
+            - MYSQL_ROOT_PASSWORD=d8sx9anc8asx
+            - MYSQL_DATABASE=singlishwords
+            - MYSQL_USER=csqsiew
+            - MYSQL_PASSWORD=u98x7v89asx
+    nginx:
+        image: "nginx:1.21-alpine"
+        restart: always
+        ports:
+            - 8081:80
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./mnt/log/nginx:/var/log/nginx
+            # - /var/local/singlishwords/log/nginx:/var/log/nginx
+            
+            - ./singlish-words-frontend/build:/usr/share/nginx/html
+            # - /etc/letsencrypt:/etc/letsencrypt
