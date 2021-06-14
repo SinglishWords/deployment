@@ -1,5 +1,7 @@
-version: '3'
+version: '3.8'
 
+# For mount and volumes, see: https://docs.docker.com/storage/
+# 
 # There are several options about the user data
 # 
 # 1. 
@@ -33,7 +35,6 @@ services:
         volumes:
             - ./mnt/log/singlishwords:/var/log/singlishwords
             - ./mnt/config/config.yaml:/opt/singlishwords/config.yaml
-            # - /var/log/singlishwords/:/var/log/singlishwords
         depends_on:
             - redis
             - mysql
@@ -43,9 +44,8 @@ services:
         build: ./mysql/
         image: singlishwords_mysql
         volumes:
-            - ./mnt/mysql:/var/lib/mysql
+            - singlishwords-mysql:/var/lib/mysql
             - ./mnt/config/mysql-conf.d/:/etc/mysql/mysql.conf.d/
-            # - /var/local/singlishwords/mysql:/var/lib/mysql
         # env_file:
             # - ./mysql.env
         environment: # will change to env files or envs later
@@ -67,18 +67,8 @@ services:
             - ./mnt/log/nginx:/var/log/nginx
             # - /var/local/singlishwords/log/nginx:/var/log/nginx
             
-            # - ./mnt/html:/usr/share/nginx/html
+            - frontend-static:/usr/share/nginx/html
             # - /etc/letsencrypt:/etc/letsencrypt
-
-    # nginx:
-    #     image: "nginx:1.21-alpine"
-    #     restart: always
-    #     ports:
-    #         - 8081:80
-    #     volumes:
-    #         - ./nginx/conf.d:/etc/nginx/conf.d
-    #         - ./mnt/log/nginx:/var/log/nginx
-    #         # - /var/local/singlishwords/log/nginx:/var/log/nginx
-            
-    #         - ./frontend/build:/usr/share/nginx/html
-    #         # - /etc/letsencrypt:/etc/letsencrypt
+volumes: 
+    frontend-static:
+    singlishwords-mysql:

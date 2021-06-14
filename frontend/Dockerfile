@@ -6,7 +6,8 @@ WORKDIR /singlishwords-react/src/
 
 RUN npm install -g npm@latest && \
     npm install && \
-    npm run build
+    npm run build && \
+    cp -r /singlishwords-react/src/build/ /data/
 
 FROM nginx:1.21-alpine as prod
 
