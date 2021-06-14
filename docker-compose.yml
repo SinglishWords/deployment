@@ -44,8 +44,11 @@ services:
         image: singlishwords_mysql
         volumes:
             - ./mnt/mysql:/var/lib/mysql
+            - ./mnt/config/mysql-conf.d/:/etc/mysql/mysql.conf.d/
             # - /var/local/singlishwords/mysql:/var/lib/mysql
-        environment: # should change to env files or envs later
+        # env_file:
+            # - ./mysql.env
+        environment: # will change to env files or envs later
             - MYSQL_ROOT_PASSWORD=d8sx9anc8asx
             - MYSQL_DATABASE=singlishwords
             - MYSQL_USER=csqsiew
