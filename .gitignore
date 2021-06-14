@@ -1,0 +1,9 @@
+mnt/log/
+mnt/mysql/
+mnt/html/
+
+backend/src/
+frontend/src/
+
+reports/
+test.sh
