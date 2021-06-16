@@ -12,20 +12,20 @@ CREATE TABLE IF NOT EXISTS `respondent` (
 --   name                   type            constraints
     `id`                    INT             NOT NULL    AUTO_INCREMENT,
     `age`                   INT             NOT NULL,
-    `gender`                VARCHAR(8)      NOT NULL,
-    `education`             TEXT            NOT NULL,
+    `gender`                VARCHAR(10)     NOT NULL,
+    `education`             VARCHAR(256)    NOT NULL,
 
-    `country_of_birth`      VARCHAR(64) ,
-    `country_of_residence`  VARCHAR(64) ,
-    `ethnicity`             VARCHAR(32) ,
+    `country_of_birth`      VARCHAR(256) ,
+    `country_of_residence`  VARCHAR(256) ,
+    `ethnicity`             VARCHAR(256) ,
     `is_native`             VARCHAR(4)     ,
-    `language_spoken`       VARCHAR(32) ,
+    `language_spoken`       TEXT,
     `start_time`            DATETIME        ,
     `end_time`              DATETIME        ,
-    `email`                 VARCHAR(32) ,
+    `email`                 VARCHAR(320) ,
 
     PRIMARY KEY (`id`)
-);
+) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `question` (
 --   name         type            constraints
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `question` (
     `word`        VARCHAR(128)    NOT NULL,
     
     PRIMARY KEY (`id`)
-);
+) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `answer` (
 --   name           type             constraints
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`question_id`)  REFERENCES question(`id`),
     FOREIGN KEY (`respondent_id`) REFERENCES respondent(`id`)
-);
+) CHARSET=utf8;
 
 -- Init question data
 INSERT INTO `question` (`word`) VALUES
