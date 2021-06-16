@@ -6,6 +6,25 @@
 2. Docker-compose (already built in windows version docker-desktop.)
 3. Git (git is used to pull the project source, so be sure about the ssh access of github.)
 
+### To install docker
+
+> https://docs.docker.com/engine/install/ubuntu/
+
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+### To install docker-compose
+
+> https://docs.docker.com/compose/install/
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
 ## Usage
 
 First, clone the source files from github.
@@ -22,7 +41,14 @@ Note that the backend part will be built in a container (when call the command b
 Update: now the frontend part will also be built inside a container.
 
 ```bash
-docker-compose up
+docker-compose up -d
+```
+
+If want to refresh some service, use
+
+```bash
+docker-compose build <service-name>
+docker-compose up -d --no-deps <service-name>
 ```
 
 ## Some important notes
