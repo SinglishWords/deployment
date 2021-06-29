@@ -58,7 +58,7 @@ services:
         restart: always
         image: singlishwords_react:1
         ports:
-            - 8081:80
+            - 80:80
         depends_on:
             - singlishwords_app
         volumes:
@@ -69,6 +69,10 @@ services:
             
             - frontend-static:/usr/share/nginx/html
             # - /etc/letsencrypt:/etc/letsencrypt
-volumes: 
+    jupyter:
+        image: jupyter/base-notebook
+        ports:
+            - 8080:8888
+volumes:
     frontend-static:
     singlishwords-mysql:
