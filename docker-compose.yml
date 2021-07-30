@@ -56,7 +56,7 @@ services:
     nginx:
         build: ./frontend/
         restart: always
-        image: singlishwords_react:1
+        image: singlishwords_react
         ports:
             - 80:80
         depends_on:

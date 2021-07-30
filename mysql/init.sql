@@ -3,6 +3,7 @@ USE singlishwords;
 DROP TABLE IF EXISTS `answer`;
 DROP TABLE IF EXISTS `respondent`;
 DROP TABLE IF EXISTS `question`;
+DROP TABLE IF EXISTS `email`;
 
 -- ---------------------------------------
 --              CREATE TABLES
@@ -22,11 +23,17 @@ CREATE TABLE IF NOT EXISTS `respondent` (
     `language_spoken`       TEXT,
     `start_time`            DATETIME        ,
     `end_time`              DATETIME        ,
-    `email`                 VARCHAR(320) ,
+
+    PRIMARY KEY (`id`)
+) CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `email` (
+--   name                   type            constraints
+    `email`                 VARCHAR(320),
 
     `want_lucky_draw`       VARCHAR(5)     DEFAULT 'no',
-    `want_update`           VARCHAR(5)     DEFAULT 'no',
-    PRIMARY KEY (`id`)
+    `want_update`           VARCHAR(5)     DEFAULT 'no'
+
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `question` (
