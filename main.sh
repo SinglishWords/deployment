@@ -9,6 +9,8 @@ Usage: ./main.sh
         stop the containers
     rebuild <name>:
         rebuild the image
+    rebuild-frontend-local:
+        rebuild the frontend in local (not in container)
     volume:
         show:
             show the volumes we are using;
@@ -92,6 +94,12 @@ function rebuild() {
     docker-compose build $1
 }
 
+function rebuild_frontend_on_local() {
+    cd $frontend_src
+    git pull
+    npm run build
+    cp -r build/* /var/lib/docker/volumes/deployment_frontend-static/_data/
+}
 
 if test "$1" = "pull"
 then
@@ -108,6 +116,9 @@ then
 elif test "$1" = "stats"
 then
     stats
+elif test "$1" = "rebuild-frontend-local"
+then
+    rebuild_frontend_on_local
 else
     help
 fi
