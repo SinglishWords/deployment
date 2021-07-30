@@ -71,8 +71,11 @@ services:
             # - /etc/letsencrypt:/etc/letsencrypt
     jupyter:
         image: jupyter/base-notebook
+        command: start-notebook.sh --NotebookApp.password='sha1:c2b7b1d3a592:fd9ce75de418a2119291772cac9d5b629a3b50de'
         ports:
             - 8080:8888
+        volumes:
+            - ./mnt/jupyter-data:/home/jovyan
 volumes:
     frontend-static:
     singlishwords-mysql:

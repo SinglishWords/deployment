@@ -26,9 +26,12 @@ EOF
 
 frontend_repo='https://www.github.com/SinglishWords/singlish-words-frontend.git'
 backend_repo='https://www.github.com/SinglishWords/singlish-words-backend.git'
+jupyter_repo='https://github.com/SinglishWords/management.git'
 
 frontend_src='./frontend/src'
 backend_src='./backend/src'
+jupyter_src='./jupyter/src'
+
 
 frontend_volume='deployment_frontend-static'
 mysql_volume='deployment_singlishwords-mysql'
@@ -55,10 +58,14 @@ function pull() {
     elif test $1 == "frontend"
     then 
         _pull_or_clone $frontend_src $frontend_repo
-    elif test $1 == "all"
+    elif test $1 == "jupyter"
+    then
+        _pull_or_clone $jupyter_src  $jupyter_repo
+    else
     then 
         _pull_or_clone $frontend_src $frontend_repo
         _pull_or_clone $backend_src  $backend_repo
+        _pull_or_clone $jupyter_src  $jupyter_repo
     fi
 }
 
@@ -96,7 +103,6 @@ function rebuild() {
 
 function rebuild_frontend_on_local() {
     cd $frontend_src
-    git pull
     npm run build
     cp -r build/* /var/lib/docker/volumes/deployment_frontend-static/_data/
 }

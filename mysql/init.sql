@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `email` (
     `email`                 VARCHAR(320),
 
     `want_lucky_draw`       VARCHAR(5)     DEFAULT 'no',
-    `want_update`           VARCHAR(5)     DEFAULT 'no'
+    `want_update`           VARCHAR(5)     DEFAULT 'no',
+    `time_on_pages`         TEXT
 
 ) CHARSET=utf8;
 
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
     `association3`  TEXT            NOT NULL,
     `time_spend`    INT             NOT NULL,
     `question_id`   INT             NOT NULL,
-    `respondent_id`  INT             NOT NULL,
+    `respondent_id` INT             NOT NULL,
 
     PRIMARY KEY (`id`),
     FOREIGN KEY (`question_id`)  REFERENCES question(`id`),
