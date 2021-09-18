@@ -30,7 +30,7 @@ jupyter_repo='https://github.com/SinglishWords/management.git'
 
 frontend_src='./frontend/src'
 backend_src='./backend/src'
-jupyter_src='./jupyter/src'
+jupyter_src='./management/src'
 
 
 frontend_volume='deployment_frontend-static'
@@ -121,6 +121,9 @@ then
 elif test "$1" = "stats"
 then
     stats
+elif test "$1" = "down"
+then
+    down
 elif test "$1" = "rebuild-frontend-local"
 then
     rebuild_frontend_on_local
