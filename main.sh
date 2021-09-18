@@ -62,7 +62,6 @@ function pull() {
     then
         _pull_or_clone $jupyter_src  $jupyter_repo
     else
-    then 
         _pull_or_clone $frontend_src $frontend_repo
         _pull_or_clone $backend_src  $backend_repo
         _pull_or_clone $jupyter_src  $jupyter_repo
