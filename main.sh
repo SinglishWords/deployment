@@ -102,6 +102,7 @@ function rebuild() {
 
 function rebuild_frontend_on_local() {
     cd $frontend_src
+    npm install
     npm run build
     cp -r build/* /var/lib/docker/volumes/deployment_frontend-static/_data/
 }
