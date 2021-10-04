@@ -1,8 +1,11 @@
 mnt/log/
 mnt/mysql/
 mnt/html/
+mnt/jupyter-data/
 
 backend/src/
 frontend/src/
+management/src/
 
 reports/
+
