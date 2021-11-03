@@ -90,5 +90,5 @@ services:
         volumes:
             - ./mnt/jupyter-data:/home/jovyan/work/export-data
 volumes:
-        #frontend-static:
+  #frontend-static:
     singlishwords-mysql:

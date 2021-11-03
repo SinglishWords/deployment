@@ -52,13 +52,13 @@ function _pull_or_clone() {
 }
 
 function pull() {
-    if test $1 = "backend"
+    if test "$1" == "backend"
     then
         _pull_or_clone $backend_src  $backend_repo
-    elif test $1 == "frontend"
+    elif test "$1" == "frontend"
     then 
         _pull_or_clone $frontend_src $frontend_repo
-    elif test $1 == "jupyter"
+    elif test "$1" == "jupyter"
     then
         _pull_or_clone $jupyter_src  $jupyter_repo
     else
