@@ -9,8 +9,8 @@ Usage: ./main.sh
         stop the containers
     rebuild <name>:
         rebuild the image
-    rebuild-frontend-local:
-        rebuild the frontend in local (not in container)
+    copy-frontend-build:
+        copy the frontend build to the volumes
     volume:
         show:
             show the volumes we are using;
@@ -24,8 +24,8 @@ EOF
 }
 
 
-frontend_repo='https://www.github.com/SinglishWords/singlish-words-frontend.git'
-backend_repo='https://www.github.com/SinglishWords/singlish-words-backend.git'
+frontend_repo='https://github.com/SinglishWords/singlish-words-frontend.git'
+backend_repo='https://github.com/SinglishWords/singlish-words-backend.git'
 jupyter_repo='https://github.com/SinglishWords/management.git'
 
 frontend_src='./frontend/src'
@@ -100,11 +100,11 @@ function rebuild() {
     docker-compose build $1
 }
 
-function rebuild_frontend_on_local() {
+function copy_frontend_build() {
     cd $frontend_src
-    npm install
-    npm run build
-    cp -r build/* /var/lib/docker/volumes/deployment_frontend-static/_data/
+    git fetch
+    git checkout build
+    cp -r * /var/lib/docker/volumes/deployment_frontend-static/_data/
 }
 
 if test "$1" = "pull"
@@ -125,9 +125,9 @@ then
 elif test "$1" = "down"
 then
     down
-elif test "$1" = "rebuild-frontend-local"
+elif test "$1" = "copy-frontend-build"
 then
-    rebuild_frontend_on_local
+    copy_frontend_build
 else
     help
 fi

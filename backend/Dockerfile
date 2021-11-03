@@ -1,6 +1,6 @@
 FROM golang:1.16.5-alpine3.13 as builder
 
-RUN apk --no-cache add make
+#RUN apk --no-cache add make
 
 RUN addgroup -g 1000 -S csqsiew && \
     adduser -u 1000 -S csqsiew -G csqsiew
@@ -13,8 +13,8 @@ WORKDIR /go/src/github.com/go/singlishwords
 
 RUN mkdir -p .build && \
     cp config.yaml .build && \
-    go mod download && \
-    make linux
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -o .build/sw_linux_amd64 main.go
+#    make linux
 
 FROM alpine:3.13 as prod
 
@@ -23,7 +23,7 @@ RUN addgroup -g 1000 -S csqsiew && \
     mkdir -p /var/log/singlishwords && \
     chown csqsiew:csqsiew -R /var/log/singlishwords
 
-USER csqsiew
+#USER csqsiew
 
 WORKDIR /opt/singlishwords/
 

@@ -6,6 +6,8 @@ FROM redis:alpine
 #   -D		Don't assign a password
 # 
 # 2. Note that, the `redis` user group is 1000, so we use the -G redis
-RUN adduser -u 1000 -S csqsiew -G redis
 
-USER csqsiew
+# RUN adduser -u 999 -S csqsiew -G redis
+# USER csqsiew
+
+USER redis
