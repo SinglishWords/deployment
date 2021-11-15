@@ -8,6 +8,10 @@ sh ./clean.sh
 
 cd ..
 
+git fetch
+git reset --hard HEAD
+git merge '@{u}'
+
 bash ./main.sh pull
 
 chown -R 1000:1000 *
