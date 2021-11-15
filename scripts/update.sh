@@ -14,6 +14,8 @@ cd ./scripts
 
 cp -r ../frontend/src/build ../mnt/html
 
+chown -R 1000:1000 *
+
 docker-compose up -d
 
 docker exec -u 0 deployment_jupyter_1 rm -rf /home/jovyan/work && mkdir /home/jovyan/work
