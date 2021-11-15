@@ -16,7 +16,9 @@ cp -r ../frontend/src/build ../mnt/html
 
 docker-compose up -d
 
-docker cp ../management/src deployment_jupyter_1:/home/jovyan/work
+docker docker exec -u 0 deployment_jupyter_1 rm -rf /home/jovyan/work/.
+
+docker cp ../management/src/. deployment_jupyter_1:/home/jovyan/work/.
 
 docker cp ../cues/src/cues.csv deployment_jupyter_1:/home/jovyan/work/export-data/cues.csv
 
