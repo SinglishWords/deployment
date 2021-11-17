@@ -4,15 +4,19 @@ sh data-export.sh
 
 docker-compose down -v
 
-sh ./clean.sh
-
 cd ..
 
 git fetch
 git reset --hard HEAD
 git merge '@{u}'
 
-bash ./main.sh pull
+rm -rf ./frontend/src
+rm -rf ./backend/src
+rm -rf ./management/src
+
+git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
+git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
+git clone https://github.com/SinglishWords/management ./management/src
 
 chown -R 1000:1000 *
 
