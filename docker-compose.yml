@@ -87,8 +87,8 @@ services:
         command: start-notebook.sh --NotebookApp.password='sha1:c2b7b1d3a592:fd9ce75de418a2119291772cac9d5b629a3b50de'
         ports:
             - 8888:8888
-#        volumes:
-#            - ./mnt/jupyter-data:/home/jovyan/work/export-data
+        volumes:
+            - ./mnt/jupyter-data:/home/jovyan/work/export-data
 volumes:
   #frontend-static:
     singlishwords-mysql:
