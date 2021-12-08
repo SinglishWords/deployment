@@ -18,6 +18,8 @@ git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/sr
 git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
 git clone https://github.com/SinglishWords/management ./management/src
 
+useradd swosw -u 1000 -g 1000
+
 chown -R 1000:1000 *
 
 sysctl net.ipv4.ip_forward
