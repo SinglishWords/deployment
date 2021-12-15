@@ -6,9 +6,9 @@ docker-compose down -v
 
 cd ..
 
-git fetch
-git reset --hard HEAD
-git merge '@{u}'
+#git fetch
+#git reset --hard HEAD
+#git merge '@{u}'
 
 rm -rf ./frontend/src
 rm -rf ./backend/src
