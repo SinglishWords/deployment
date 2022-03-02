@@ -24,7 +24,7 @@ chown -R 1000:1000 *
 
 sysctl net.ipv4.ip_forward
 
-cp -r ./frontend/src/build ./mnt/html
+cp -r ./frontend/src/build/ ./mnt/html
 
 docker-compose build
 
