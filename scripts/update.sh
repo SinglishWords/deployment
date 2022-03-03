@@ -13,6 +13,7 @@ git merge '@{u}'
 rm -rf ./frontend/src
 rm -rf ./backend/src
 rm -rf ./management/src
+rm -rf ./mnt/html
 
 git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
 git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
