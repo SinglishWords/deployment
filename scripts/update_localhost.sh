@@ -13,6 +13,7 @@ cd ..
 rm -rf ./frontend/src
 rm -rf ./backend/src
 rm -rf ./management/src
+rm -rf ./mnt/html
 
 git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
 git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
@@ -22,7 +23,7 @@ git clone https://github.com/SinglishWords/management ./management/src
 
 # chown -R 1000:1000 *
 
-sysctl net.ipv4.ip_forward
+# sysctl net.ipv4.ip_forward
 
 find ./ -type f | xargs sed -i  's/singlishwords[^@]nus.edu.sg(?!.chained)/localhost:443/g'
 
