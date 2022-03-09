@@ -10,13 +10,13 @@ cd ..
 # git reset --hard HEAD
 # git merge '@{u}'
 
-rm -rf ./frontend/src
-rm -rf ./backend/src
+# rm -rf ./frontend/src
+# rm -rf ./backend/src
 rm -rf ./management/src
 rm -rf ./mnt/html
 
-git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
-git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
+# git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
+# git clone https://github.com/SinglishWords/singlish-words-backend ./backend/src
 git clone https://github.com/SinglishWords/management ./management/src
 
 # useradd swosw -u 1000 -g 1000
@@ -25,7 +25,7 @@ git clone https://github.com/SinglishWords/management ./management/src
 
 # sysctl net.ipv4.ip_forward
 
-find ./ -type f | xargs sed -i  's/singlishwords[^@]nus.edu.sg(?!.chained)/localhost:443/g'
+find ./ -type f | xargs perl -pi -e "s/singlishwords[s.]nus.edu.sg(?!.chained)/localhost:443/g"
 
 cp -r ./frontend/src/build/ ./mnt/html
 
