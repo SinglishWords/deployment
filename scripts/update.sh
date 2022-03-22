@@ -31,8 +31,8 @@ docker-compose build
 
 docker-compose up -d
 
-docker cp ./cues/src/cues.csv deployment_jupyter_1:/home/jovyan/work/export-data/cues.csv
-
 cd ./scripts
+
+sh ./csv-update.sh
 
 sh ./data-refresh.sh

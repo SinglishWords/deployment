@@ -1,0 +1,1 @@
+docker cp ../cues/src/cues.csv deployment_jupyter_1:/home/jovyan/work/export-data/cues.csv
