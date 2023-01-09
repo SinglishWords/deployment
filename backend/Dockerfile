@@ -1,4 +1,4 @@
-FROM golang:1.16.5-alpine3.13 as builder
+FROM golang:1.17.13-alpine3.15 as builder
 
 #RUN apk --no-cache add make
 
@@ -16,7 +16,7 @@ RUN mkdir -p .build && \
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -o .build/sw_linux_amd64 main.go
 #    make linux
 
-FROM alpine:3.13 as prod
+FROM alpine:3.15 as prod
 
 RUN addgroup -g 1000 -S csqsiew && \
     adduser -u 1000 -S csqsiew -G csqsiew && \ 
