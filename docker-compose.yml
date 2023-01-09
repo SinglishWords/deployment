@@ -38,6 +38,9 @@ services:
         platform: linux/x86_64
         build: ./mysql/
         image: "singlishwords_mysql"
+        ports:
+            - 3306:3306
+            - 33060:33060
         volumes:
             - singlishwords-mysql:/var/lib/mysql
             # - ./mnt/mysql-init.d/:/docker-entrypoint-initdb.d/
