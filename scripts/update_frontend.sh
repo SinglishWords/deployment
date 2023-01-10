@@ -5,7 +5,7 @@ rm -rf ./mnt/html
 
 # Fetch latest changes
 rm -rf ./frontend/src
-git clone https://github.com/SinglishWords/singlish-words-frontend ./frontend/src
+git clone https://github.com/SinglishWords/singlish-words-frontend-v2 ./frontend/src
 
 # Copy latest build
 cp -r ./frontend/src/build/ ./mnt/html
