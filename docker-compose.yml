@@ -42,7 +42,7 @@ services:
             - 3306:3306
             - 33060:33060
         volumes:
-            - singlishwords-mysql:/var/lib/mysql
+            - /var/lib/mysql:/var/lib/mysql
             # - ./mnt/mysql-init.d/:/docker-entrypoint-initdb.d/
             - ./mnt/config/mysql-conf.d/:/etc/mysql/mysql.conf.d/
             
