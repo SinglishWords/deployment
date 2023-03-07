@@ -6,7 +6,7 @@ DB_USER="root"
 DB_PASSWORD="d8sx9anc8asx"
 
 # Set backup directory
-BACKUP_DIR="/tmp/mysql_backups"
+BACKUP_DIR="/root/backups"
 
 # Create backup directory if it does not exist
 if [ ! -d "$BACKUP_DIR" ]; then
@@ -21,6 +21,11 @@ CONTAINER_NAME="deployment_mysql_1"
 
 # Perform the backup
 docker exec $CONTAINER_NAME mysqldump --user=$DB_USER --password=$DB_PASSWORD $DB_NAME | gzip > $BACKUP_FILE
+
+cd $BACKUP_DIR
+git add .
+git commit -m "commit backup"
+git push origin main
 
 # Check if backup was successful
 if [ $? -eq 0 ]; then
