@@ -1,9 +1,12 @@
+CREATE DATABASE IF NOT EXISTS singlishwords;
 USE singlishwords;
 
--- DROP TABLE IF EXISTS `answer`;
--- DROP TABLE IF EXISTS `respondent`;
--- DROP TABLE IF EXISTS `question`;
--- DROP TABLE IF EXISTS `email`;
+DROP TABLE IF EXISTS `answer`;
+DROP TABLE IF EXISTS `respondent`;
+DROP TABLE IF EXISTS `question`;
+DROP TABLE IF EXISTS `email`;
+DROP TABLE IF EXISTS `association`;
+DROP TABLE IF EXISTS `community_map`;
 
 -- ---------------------------------------
 --              CREATE TABLES
@@ -30,34 +33,36 @@ CREATE TABLE IF NOT EXISTS `respondent` (
 
 CREATE TABLE IF NOT EXISTS `email` (
 --   name                   type            constraints
-    `email`                 VARCHAR(320),
+   `email`                 VARCHAR(320),
 
-    `want_lucky_draw`       VARCHAR(5)     DEFAULT 'no',
-    `want_update`           VARCHAR(5)     DEFAULT 'no',
-    `time_on_pages`         TEXT
+   `want_lucky_draw`       VARCHAR(5)     DEFAULT 'no',
+   `want_update`           VARCHAR(5)     DEFAULT 'no',
+   `time_on_pages`         TEXT
 
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `question` (
 --   name         type            constraints
-    `id`          INT             NOT NULL      AUTO_INCREMENT,
-    `word`        VARCHAR(128)    NOT NULL,
-    `enable`      INT             DEFAULT 1,
-    `count`       INT             DEFAULT 1,
-    UNIQUE (`word`),
-    PRIMARY KEY (`id`)
+  `id`          INT             NOT NULL      AUTO_INCREMENT,
+  `word`        VARCHAR(128)    NOT NULL,
+  `enable`      INT             DEFAULT 1,
+  `count`       INT             DEFAULT 1,
+
+  UNIQUE (`word`),
+  PRIMARY KEY (`id`)
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `answer` (
 --   name           type             constraints
-    `id`            INT             NOT NULL    AUTO_INCREMENT,
+    `id`                    INT             NOT NULL    AUTO_INCREMENT,
 
-    `association1`  TEXT            NOT NULL,
-    `association2`  TEXT            NOT NULL,
-    `association3`  TEXT            NOT NULL,
-    `time_spend`    INT             NOT NULL,
-    `question_id`   INT             NOT NULL,
-    `respondent_id` INT             NOT NULL,
+    `association1`          TEXT            NOT NULL,
+    `association2`          TEXT            NOT NULL,
+    `association3`          TEXT            NOT NULL,
+    `is_recognised_word`    INT             NOT NULL,
+    `time_spend`            INT             NOT NULL,
+    `question_id`           INT             NOT NULL,
+    `respondent_id`         INT             NOT NULL,
 
     PRIMARY KEY (`id`),
     FOREIGN KEY (`question_id`)  REFERENCES question(`id`),
